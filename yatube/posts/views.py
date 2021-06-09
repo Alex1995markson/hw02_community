@@ -1,20 +1,13 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
 
-# Create your views here.
+
 from .models import Post, Group
 
 
-def home_page(request):
-    return HttpResponse('weew')
-
-
 def index(request):
-    latest = Post.objects.order_by('-pub_date')[:10]
-    output = []
-    for item in latest:
-        output.append(item.text)
-    return HttpResponse('\n'.join(output))
+    posts = Post.objects.select_related('author') \
+                .select_related('group')
+    return render(request, 'index.html', {"posts": posts})
 
 
 def group_posts(self, slug):
