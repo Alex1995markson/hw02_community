@@ -147,4 +147,4 @@ dmypy.json
 
 # Files style and etc.
 
-.static
+/static
