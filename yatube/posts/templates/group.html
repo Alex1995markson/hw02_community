@@ -1,12 +1,9 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block title %} Записи сообщества {{ group.title }}{% endblock %}
-{% block header %} Группы {% endblock %}
+{% block header %}{{ group.title }}{% endblock %}
 {% block content %}
 
-  </head>
-  <body class="container">
   <div class="mt-4 text-center">  
-    <h1>{{ group.title }}</h1>
       <p>
         {{ group.description }}
       </p>
@@ -19,7 +16,5 @@
       {% endfor %}
   </div>
 
-  </body>
-</html>
 
 {% endblock %}

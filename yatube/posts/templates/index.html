@@ -2,37 +2,14 @@
 {% block title %}Последние обновления на сайте{% endblock %}
 {% block header %}Последние обновления на сайте{% endblock %}
 {% block content %}
-  <body>
-  <div class="container">
-    <h1>Поиск по записям</h1>
 
-    <div class="card">
-      <div class="card-body">
-
-        <form class="form-inline" action="/">
-          <div class="form-row">
-          <input name="q" class="form-control form-control-lg" type="search" 
-            placeholder="Поиск" {% if keyword %}value="{{ keyword }}"{% endif %}>
-          <button class="btn" type="submit">Найти</button>
-          </div>
-        </form>
-        </div>
-      </div>
-
-    <div class="container">
-    {% for post in posts %}
-    <strong>
-        Автор: {{ post.author.get_full_name }}, 
-        Дата публикации: {{ post.pub_date|date:"d M Y" }}, 
-        Группа: {{ post.group.title }}
-    </strong>
+  {% for post in posts %}
+    <h3>
+      Автор: {{ post.author.get_full_name }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}
+    </h3>
     <p>{{ post.text|linebreaksbr }}</p>
-    <hr>
-    {% endfor %}
-    </div>
+    {% if not forloop.last %}<hr>{% endif %}
+  {% endfor %}
 
-  </div>
-  </body>
-</html>
+{% endblock %} 
 
-{% endblock %}
